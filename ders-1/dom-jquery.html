@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM vs jQuery</title>
+</head>
+<body>
+    <p>Lorem, ipsum color.</p>
+    <p>Lorem, ipsum color.</p>
+
+    <script src="jquery-3.6.0.js"></script>
+
+    <script>
+
+        //yukarıdaki paragrafın dom nesnesine erişiyoruz
+        //var parag = document.querySelector("p");
+
+        //parag.style.color =  "red"; //renk stilini değiştir
+        //parag.css("color", "red"); //bu kod çalışmaz jquery sayfada yok
+
+        //mevcut dom nesnesini jqueryleştirme
+        //$(parag).css("color", "red"); //çalışıyor
+
+        // sayfadaki tüm paragrafları kırmızı yapıyor
+        // yani tüm paragrafı dizi olarak alıp tüm diziyi kırmızı yapıyor
+        $("p").css("color", "red");
+
+        //ilk ve son paragrafı kırmızı yap
+        //$("p").first().css("color", "red");
+        //$("p").last().css("color", "red");
+
+        // jquery nesnesinden dom elementine erişme
+        var p = $("p")[0]; // saf dom elementi
+        p.style.backgroundColor = "green"; // saj js ile rnek değiştirme
+        
+        var p1 = $("p");
+        p1.css("color", "red");
+
+        var p2 = $("p")[0];
+        p2.style.backgroundColor = "green";
+
+    </script>
+</body>
+</html>
