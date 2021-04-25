@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery - Traversing</title>
+</head>
+<body>
+    <ul id="liste">
+        <li>Adem</li>
+        <li>Hatice</li>
+        <li>Ferhat</li>
+        <li>Ege</li>
+        <li>Özge</li>
+        <li>Tuba</li>
+        <li>Alperen</li>
+        <li>Zeynep</li>
+        <li>İbrahim</li>
+        <li>Mehmet</li>
+    </ul>
+
+    <script src="jquery-3.6.0.js"></script>
+
+    <script>
+        //her bir liste ögesinin sonuna o ögenin uzunluğunu koy
+        var ogeler = document.querySelectorAll("#liste > li");
+        //console.log(ogeler);
+
+        /*
+        //for (var i = 0; i < ogeler.length; i++){}
+        for ( var i in ogeler ){
+            var metin = ogeler[i].innerText
+            console.log(metin.length);
+        }
+        */
+        
+        //for ile
+        console.log(ogeler);
+        for (var i = 0; i < ogeler.length; i++){
+            var metin = ogeler[i].innerContent;
+            //console.log(metin + ": " + metin.length);
+            ogeler[i].textContent += ": " + metin.length;
+        }
+
+        // foreach metodu ile
+        ogeler.forEach(function(el, key){
+            console.log(key + " " + el.innerText);
+        });
+
+        // foreach metodu ile
+        ogeler.forEach(function(el, key){
+            var metin = el.innerText;
+            el.innerText += ": " + metin.length;
+        });
+
+        // seçilen kodu ctrl + k kombinasyonu ve ctrl + c ile yoruma alınabilir
+        // seçilen kodu ctrl + k kombinasyonu ve ctrl + u ile yorumdan çıkartılabilir alınabilir
+
+        $("#liste > li").each(function(index, element) {
+            //console.log(index + " " + element); // secim kumesindeki her bir element için ayrı ayrı çağırır
+            //console.log(this.innerText);
+            var metin = $(this).text();
+            $(this).append(": " + metin.length);
+        });
+
+        var dizi = ["Emek", "Caner", "Fuat", "Ferhat", "İlker"];
+        // vanilla js ile dizinin elemanlarını bir liste oluşturup ekle
+        // ve sonra bu listeyi yukarıdaki listenin önüne ekle
+        let ul = document.createElement("ul");
+        for ( const ad of dizi) {
+            let li = document.createElement("li");
+            li.innerText = ad;
+            ul.appendChild(li);
+        }
+        
+        let oncekiUl = document.getElementById("liste");
+        // js insert element before
+        oncekiUl.parentNode.insertBefore(ul, oncekiUl);
+
+        // jquery ile dizinin elemanlarını bir liste oluşturup ekle
+        // ve sonra bu listeyi yukarıdaki listenin önüne ekle
+        var yeniUl = $("<ul/>");
+        $.each(dizi, function(index, ad) {
+            //console.log(ad);
+            $("<li/>").text(ad).appendTo(yeniUl);
+        });
+        yeniUl.insertBefore("#liste");
+
+        /* 
+        yukarıda önce ul elementi (jquery nesnsi olarak) oluşturduk
+        al'leri jquery ile forech'i ile gezdik
+        her ad için o adı içeren bir li oluşturduk ve 
+        onu ul'a ekledik
+        yeni listeyi eski listenin öncesine ekledik
+        */
+
+    </script>
+        
+</body>
+</html>
